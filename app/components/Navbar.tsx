@@ -12,10 +12,10 @@ const Navbar: FC<NavbarProps> = async ({}) => {
   const session = await getServerSession();
 
   return (
-    <nav className="fixed backdrop-blur-sm top-0 left-0 right-0 bg-slate-50 dark:bg-slate-900 z-50 border-b border-slate-300 dark:border-slate-700 h-20 shadow-sm flex items-center justify-between">
+    <nav className="fixed backdrop-blur-sm top-0 left-0 right-0 z-50 h-20 shadow-sm flex items-center justify-between">
       <div className="container max-w-7xl w-full flex items-center justify-between">
         <Link href={"/"} className={buttonVariants({ variant: "link" })}>
-          Request
+          Crypto-Hub
         </Link>
 
         <div className="md:hidden">

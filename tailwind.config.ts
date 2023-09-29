@@ -23,6 +23,8 @@ const config: Config = {
       },
       colors: {
         ...colors,
+        'pink': '#e80596',
+        'purple':'#8e26a8',
         'light-gold': '#f5bc51',
         'dark-gold': '#533519',
       },
