@@ -5,11 +5,12 @@ import { buttonVariants } from "./reusables/Button";
 import SigninButton from "./SigninButton";
 import SignoutButton from "./SignoutButton";
 import { ThemeToggle } from "./ThemeToggle";
+import { authOptions } from "../lib/auth";
 
 interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = async ({}) => {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   return (
     <nav className="fixed backdrop-blur-sm top-0 left-0 right-0 z-50 h-20 shadow-sm flex items-center justify-between">

@@ -4,7 +4,7 @@ import type { VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const HeadingVariant = cva(
-  "text-center tracking-tighter leading-tight, text-purple font-black",
+  "text-center tracking-tighter leading-tight, text-pink font-black",
   {
     variants: {
       size: {
