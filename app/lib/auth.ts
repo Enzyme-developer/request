@@ -1,20 +1,34 @@
 import { NextAuthOptions } from "next-auth";
-import GoogleProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "./db";
+
+function getGoogleCredentials(): { clientId: string; clientSecret: string } {
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
+  const clientSecret = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET
+  if (!clientId || clientId.length === 0) {
+    throw new Error('Missing GOOGLE_CLIENT_ID')
+  }
+
+  if (!clientSecret || clientSecret.length === 0) {
+    throw new Error('Missing GOOGLE_CLIENT_SECRET')
+  }
+
+  return { clientId, clientSecret }
+}
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   session: {
     strategy: "jwt",
   },
-  pages: {
-    signIn: "/login",
-  },
+  // pages: {
+  //   signIn: "/login",
+  // },
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: getGoogleCredentials().clientId,
+      clientSecret: getGoogleCredentials().clientSecret,
     }),
   ],
   callbacks: {
@@ -38,7 +52,6 @@ export const authOptions: NextAuthOptions = {
         token.id = user!.id;
         return token;
       }
-
       return {
         id: dbUser.id,
         name: dbUser.name,
