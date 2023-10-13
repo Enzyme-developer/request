@@ -28,6 +28,11 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
     try {
       await revokeApiKey();
       await createNewApiKey();
+      toast({
+        title: "API key created.",
+        message: "ApI key successfully generated.",
+        type: "success",
+      });
       router.refresh();
     } catch (error) {
       toast({
@@ -44,6 +49,11 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
     setIsRevoking(true);
     try {
       await revokeApiKey();
+      toast({
+        title: "API key revoked",
+        message: "Key successfully revoked",
+        type: "success",
+      });
       router.refresh();
     } catch (error) {
       toast({
@@ -76,7 +86,6 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
         <DropdownMenuItem
           onClick={() => {
             navigator.clipboard.writeText(apiKeyKey);
-
             toast({
               title: "Copied",
               message: "API key copied to clipboard",

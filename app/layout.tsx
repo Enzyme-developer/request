@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { cn } from "./lib/utils";
 import Providers from "./components/Providers";
 import Navbar from "./components/Navbar";
+import { Toaster } from "./components/reusables/Toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +18,9 @@ export default function RootLayout({
       className={cn(inter.className, "text-purple-700 antialiased")}
     >
       <body className="min-h-screen bg-slate-50 dark:bg-slate-900 antialiased">
-        <Providers> 
+        <Providers>
           <Navbar />
+          <Toaster position="bottom-right" />
           {children}
         </Providers>
       </body>

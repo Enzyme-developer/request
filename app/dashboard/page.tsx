@@ -4,6 +4,7 @@ import React, { FC } from "react";
 import { db } from "../lib/db";
 import RequestApiKey from "../components/RequestApiKey";
 import ApiDashboard from "../components/ApiDashboard";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "CryptoHub | dashboard",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 const page: FC = async () => {
   const user = await getServerSession();
 
-//   if (!user) return notFound();
+  if (!user) return notFound();
 
   const apiKey = await db.apikey.findFirst({
     where: { userId: user?.user.id, enabled: true },
