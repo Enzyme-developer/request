@@ -43,7 +43,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  Apikey        Apikey[]
+  apiKey        Apikey[]
   apiKeyId      String?
 }
 
@@ -64,10 +64,10 @@ model ApiRequest {
   timeStamp  DateTime @default(now())
   method     String
   path       String
-  Status     Int
+  status     Int
   duration   Int
   usedApiKey String
-  ApiKey     Apikey   @relation(fields: [apiKeyId], references: [id])
+  apiKey     Apikey   @relation(fields: [apiKeyId], references: [id])
   apiKeyId   String
 
   @@index([apiKeyId, timeStamp])
